@@ -31,32 +31,31 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {siteConfig.metaHtml && (
-            <>{
-              <script dangerouslySetInnerHTML={{ __html: `
+            <script dangerouslySetInnerHTML={{ __html: `
                 (function() {
                   var metaContainer = document.createElement('div');
-                  metaContainer.innerHTML = \`${siteConfig.metaHtml.replace(/`/g, '\\`')}\`;
+                  metaContainer.innerHTML = \`${siteConfig.metaHtml.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\${/g, "\\${")}\`;
                   var head = document.head;
                   Array.from(metaContainer.childNodes).forEach(function(node) {
-                    if (node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'script') {
-                      var script = document.createElement('script');
-                      if (node.src) {
-                        script.src = node.src;
-                      }
-                      script.innerHTML = node.innerHTML;
-                      head.appendChild(script);
-                    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'meta') {
-                      var meta = document.createElement('meta');
-                      for(var i = 0; i < node.attributes.length; i++) {
-                        var attr = node.attributes[i];
-                        meta.setAttribute(attr.name, attr.value);
-                      }
-                      head.appendChild(meta);
+                    if (node.nodeType === 1 /* ELEMENT_NODE */) {
+                        if (node.tagName.toLowerCase() === 'script') {
+                            var script = document.createElement('script');
+                            // Copy attributes
+                            for (var i = 0; i < node.attributes.length; i++) {
+                                var attr = node.attributes[i];
+                                script.setAttribute(attr.name, attr.value);
+                            }
+                            script.innerHTML = node.innerHTML;
+                            head.appendChild(script);
+                        } else {
+                           head.appendChild(node.cloneNode(true));
+                        }
+                    } else {
+                        head.appendChild(node.cloneNode(true));
                     }
                   });
                 })();
               `}} />
-            }</>
         )}
       </head>
       <body className="font-body antialiased">
