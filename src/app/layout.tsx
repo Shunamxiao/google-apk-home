@@ -31,7 +31,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {siteConfig.metaHtml && (
-            <div dangerouslySetInnerHTML={{ __html: siteConfig.metaHtml }} />
+            <div dangerouslySetInnerHTML={{ __html: siteConfig.metaHtml.replace(/<div[^>]*>|<\/div>/g, '') }} />
         )}
       </head>
       <body className="font-body antialiased">
