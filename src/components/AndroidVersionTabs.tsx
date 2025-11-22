@@ -16,7 +16,7 @@ interface AndroidVersionTabsProps {
 export function AndroidVersionTabs({ versions }: AndroidVersionTabsProps) {
   return (
     <Tabs defaultValue={versions[0]?.id} className="w-full">
-      <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 h-auto">
+      <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 mb-8 h-auto">
         {versions.map((version) => (
           <TabsTrigger
             key={version.id}

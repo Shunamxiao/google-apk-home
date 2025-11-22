@@ -9,7 +9,7 @@ export function Header() {
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Smartphone className="h-7 w-7 text-primary" />
-          <h1 className="text-2xl font-bold font-headline text-foreground">
+          <h1 className="text-2xl font-bold font-headline text-foreground hidden sm:block">
             安卓助手
           </h1>
         </Link>
