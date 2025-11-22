@@ -9,26 +9,13 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Newspaper, BookOpen } from 'lucide-react';
+import type { Article } from '@/lib/data';
 
-const articles = [
-  {
-    title: '如何解锁 Bootloader 并刷入第三方 ROM',
-    description: '本教程将引导您完成解锁安卓设备 Bootloader 的全过程，并成功刷入自定义 ROM，开启您的玩机之旅。',
-    link: '#',
-  },
-  {
-    title: 'Magisk 指南：获取 Root 权限与模块化定制',
-    description: '深入了解 Magisk，学习如何安全地获取 Root 权限，并通过安装模块来扩展您设备的功能，实现深度定制。',
-    link: '#',
-  },
-  {
-    title: '谷歌相机（GCam）安装与配置教程',
-    description: '释放您安卓手机的拍照潜力。本指南教您如何为您的机型找到并安装最佳版本的谷歌相机，并进行优化配置。',
-    link: '#',
-  },
-];
+interface ArticleTutorialsProps {
+  articles: Article[];
+}
 
-export function ArticleTutorials() {
+export function ArticleTutorials({ articles }: ArticleTutorialsProps) {
   return (
     <section className="mt-16">
       <div className="text-center mb-12">
