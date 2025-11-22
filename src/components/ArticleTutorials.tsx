@@ -29,22 +29,30 @@ export function ArticleTutorials({ articles }: ArticleTutorialsProps) {
       </div>
       <div className="space-y-6">
         {articles.map((article, index) => (
-          <Card key={index} className="flex flex-col md:flex-row items-center hover:shadow-lg transition-shadow duration-300">
-            <CardHeader className="flex-shrink-0">
-              <div className="bg-primary/10 p-4 rounded-lg">
-                <Newspaper className="h-10 w-10 text-primary" />
-              </div>
-            </CardHeader>
-            <CardContent className="pt-6 md:pt-0 md:pl-0 flex-grow">
-              <CardTitle className="font-headline text-xl mb-2">{article.title}</CardTitle>
-              <CardDescription>{article.description}</CardDescription>
-            </CardContent>
-            <CardFooter className="pt-6 md:pt-0">
-              <Button asChild variant="outline">
-                <Link href={`/articles/${article.slug}`}>阅读更多</Link>
-              </Button>
-            </CardFooter>
-          </Card>
+          <Link
+            key={index}
+            href={`/articles/${article.slug}`}
+            className="block cursor-pointer"
+          >
+            <Card className="flex flex-col md:flex-row items-center hover:shadow-lg transition-shadow duration-300">
+              <CardHeader className="flex-shrink-0">
+                <div className="bg-primary/10 p-4 rounded-lg">
+                  <Newspaper className="h-10 w-10 text-primary" />
+                </div>
+              </CardHeader>
+              <CardContent className="pt-6 md:pt-0 md:pl-0 flex-grow">
+                <CardTitle className="font-headline text-xl mb-2">
+                  {article.title}
+                </CardTitle>
+                <CardDescription>{article.description}</CardDescription>
+              </CardContent>
+              <CardFooter className="pt-6 md:pt-0">
+                <Button asChild variant="outline" tabIndex={-1}>
+                  <div role="button">阅读更多</div>
+                </Button>
+              </CardFooter>
+            </Card>
+          </Link>
         ))}
       </div>
     </section>
