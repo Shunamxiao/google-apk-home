@@ -31,7 +31,32 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {siteConfig.metaHtml && (
-            <div dangerouslySetInnerHTML={{ __html: siteConfig.metaHtml.replace(/<div[^>]*>|<\/div>/g, '') }} />
+            <>{
+              <script dangerouslySetInnerHTML={{ __html: `
+                (function() {
+                  var metaContainer = document.createElement('div');
+                  metaContainer.innerHTML = \`${siteConfig.metaHtml.replace(/`/g, '\\`')}\`;
+                  var head = document.head;
+                  Array.from(metaContainer.childNodes).forEach(function(node) {
+                    if (node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'script') {
+                      var script = document.createElement('script');
+                      if (node.src) {
+                        script.src = node.src;
+                      }
+                      script.innerHTML = node.innerHTML;
+                      head.appendChild(script);
+                    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'meta') {
+                      var meta = document.createElement('meta');
+                      for(var i = 0; i < node.attributes.length; i++) {
+                        var attr = node.attributes[i];
+                        meta.setAttribute(attr.name, attr.value);
+                      }
+                      head.appendChild(meta);
+                    }
+                  });
+                })();
+              `}} />
+            }</>
         )}
       </head>
       <body className="font-body antialiased">
