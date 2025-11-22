@@ -1,5 +1,6 @@
 import { Smartphone } from 'lucide-react';
 import Link from 'next/link';
+import { FeedbackDialog } from './FeedbackDialog';
 
 export function Header() {
   return (
@@ -11,6 +12,7 @@ export function Header() {
             安卓助手
           </h1>
         </Link>
+        <FeedbackDialog />
       </div>
     </header>
   );
