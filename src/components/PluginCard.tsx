@@ -28,7 +28,7 @@ export function PluginCard({ plugin }: PluginCardProps) {
         </div>
         <div>
           <CardTitle className="font-headline text-xl">{name}</CardTitle>
-          <CardDescription>Version: {version}</CardDescription>
+          <CardDescription>版本: {version}</CardDescription>
         </div>
       </CardHeader>
       <CardContent className="flex-grow">
@@ -38,7 +38,7 @@ export function PluginCard({ plugin }: PluginCardProps) {
         <Button asChild className="w-full">
           <Link href={downloadUrl}>
             <Download className="mr-2 h-4 w-4" />
-            Download
+            下载
           </Link>
         </Button>
       </CardFooter>

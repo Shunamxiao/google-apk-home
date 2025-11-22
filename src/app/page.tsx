@@ -10,11 +10,10 @@ export default function Home() {
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight">
-            Google Your Android
+            谷歌化你的安卓
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Get the essential Google packages for your Android version. Simple,
-            fast, and reliable downloads.
+            为您的安卓版本获取必要的谷歌软件包。简单、快速、可靠的下载。
           </p>
         </section>
         <AndroidVersionTabs versions={androidVersions} />
