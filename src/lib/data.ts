@@ -19,7 +19,7 @@ export interface Plugin {
   description: string;
   version: string;
   downloadUrl: string;
-  iconName: IconName;
+  iconName: IconName | string; // Allow string for image URLs
 }
 
 export interface AndroidVersion {

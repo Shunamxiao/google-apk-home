@@ -101,7 +101,7 @@
       "description": "一个强大的工具，允许普通应用直接通过 ADB/Root 权限使用系统 API。",
       "version": "13.5.0",
       "downloadUrl": "#",
-      "iconName": "Shell"
+      "iconName": "https://raw.githubusercontent.com/ShizukuIAd/Shizuku-Icon/master/Shizuku_Logo_48.png"
     },
     {
       "id": "tool-scene",
