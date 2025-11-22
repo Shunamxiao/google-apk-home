@@ -1,6 +1,7 @@
-import { Smartphone } from 'lucide-react';
+import { Smartphone, User, Gamepad2 } from 'lucide-react';
 import Link from 'next/link';
 import { FeedbackDialog } from './FeedbackDialog';
+import { Button } from './ui/button';
 
 export function Header() {
   return (
@@ -12,7 +13,21 @@ export function Header() {
             安卓助手
           </h1>
         </Link>
-        <FeedbackDialog />
+        <div className="flex items-center gap-2">
+          <Button variant="outline" asChild>
+            <Link href="#" target="_blank">
+              <User className="mr-2 h-4 w-4" />
+              谷歌账号购买
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="#" target="_blank">
+              <Gamepad2 className="mr-2 h-4 w-4" />
+              游戏下载
+            </Link>
+          </Button>
+          <FeedbackDialog />
+        </div>
       </div>
     </header>
   );
