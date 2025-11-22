@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import { FeedbackDialog } from '@/components/FeedbackDialog';
 import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton';
 
 export const metadata: Metadata = {
