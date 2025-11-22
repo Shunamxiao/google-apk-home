@@ -41,7 +41,7 @@ export function ArticleTutorials({ articles }: ArticleTutorialsProps) {
             </CardContent>
             <CardFooter className="pt-6 md:pt-0">
               <Button asChild variant="outline">
-                <Link href={article.link}>阅读更多</Link>
+                <Link href={`/articles/${article.slug}`}>阅读更多</Link>
               </Button>
             </CardFooter>
           </Card>

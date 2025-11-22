@@ -21,16 +21,22 @@ export interface Plugin {
 
 export interface AndroidVersion {
   id: string;
-  name: string;
+  name:string;
   releaseName: string;
   plugins: Plugin[];
 }
 
 export interface Article {
+  slug: string;
   title: string;
   description: string;
-  link: string;
+  keywords: string;
+  content: string;
 }
 
 export const androidVersions: AndroidVersion[] = appData.androidVersions;
 export const articles: Article[] = appData.articles;
+
+export function getArticleBySlug(slug: string): Article | undefined {
+  return articles.find((article) => article.slug === slug);
+}
