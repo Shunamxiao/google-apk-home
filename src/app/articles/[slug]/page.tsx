@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getArticleBySlug } from '@/lib/data';
+import { getArticleBySlug, siteConfig } from '@/lib/data';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ReactMarkdown from 'react-markdown';
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 
   return {
-    title: `${article.title} | 安卓助手`,
+    title: `${article.title} | ${siteConfig.siteName}`,
     description: article.description,
     keywords: article.keywords,
   };

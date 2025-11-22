@@ -1,4 +1,13 @@
 {
+  "siteConfig": {
+    "siteName": "安卓助手",
+    "logoIcon": "Smartphone",
+    "title": "安卓助手 | 轻松设置安卓谷歌环境",
+    "description": "查找并下载在您的安卓设备上安装谷歌服务所需的文件。我们为各种安卓版本提供软件包，使过程简单明了。",
+    "footerText": "版权所有.",
+    "footerSubText": "为安卓爱好者提供方便的谷歌环境工具。",
+    "metaHtml": ""
+  },
   "androidVersions": [
     {
       "id": "android-14",

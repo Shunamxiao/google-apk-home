@@ -1,8 +1,8 @@
 import type { LucideIcon } from 'lucide-react';
-import { Package, Store, Cog, Shell, Zap, Replace } from 'lucide-react';
+import { Package, Store, Cog, Shell, Zap, Replace, Smartphone } from 'lucide-react';
 import appData from './app-data.json';
 
-export type IconName = 'Cog' | 'Package' | 'Store' | 'Shell' | 'Zap' | 'Replace';
+export type IconName = 'Cog' | 'Package' | 'Store' | 'Shell' | 'Zap' | 'Replace' | 'Smartphone';
 
 export const iconMap: Record<IconName, LucideIcon> = {
   Cog,
@@ -11,7 +11,18 @@ export const iconMap: Record<IconName, LucideIcon> = {
   Shell,
   Zap,
   Replace,
+  Smartphone,
 };
+
+export interface SiteConfig {
+  siteName: string;
+  logoIcon: IconName;
+  title: string;
+  description: string;
+  footerText: string;
+  footerSubText: string;
+  metaHtml: string;
+}
 
 export interface Plugin {
   id: string;
@@ -39,6 +50,7 @@ export interface Article {
   content: string;
 }
 
+export const siteConfig: SiteConfig = appData.siteConfig;
 export const androidVersions: AndroidVersion[] = appData.androidVersions;
 export const thirdPartyTools: ThirdPartyTool[] = appData.thirdPartyTools;
 export const articles: Article[] = appData.articles;
