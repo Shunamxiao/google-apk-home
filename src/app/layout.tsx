@@ -31,31 +31,32 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {siteConfig.metaHtml && (
-            <script dangerouslySetInnerHTML={{ __html: `
+          <script
+            id="meta-html-injector"
+            dangerouslySetInnerHTML={{
+              __html: `
                 (function() {
+                  var metaHtml = ${JSON.stringify(siteConfig.metaHtml)};
                   var metaContainer = document.createElement('div');
-                  metaContainer.innerHTML = \`${siteConfig.metaHtml.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\${/g, "\\${")}\`;
+                  metaContainer.innerHTML = metaHtml;
                   var head = document.head;
                   Array.from(metaContainer.childNodes).forEach(function(node) {
-                    if (node.nodeType === 1 /* ELEMENT_NODE */) {
-                        if (node.tagName.toLowerCase() === 'script') {
-                            var script = document.createElement('script');
-                            // Copy attributes
-                            for (var i = 0; i < node.attributes.length; i++) {
-                                var attr = node.attributes[i];
-                                script.setAttribute(attr.name, attr.value);
-                            }
-                            script.innerHTML = node.innerHTML;
-                            head.appendChild(script);
-                        } else {
-                           head.appendChild(node.cloneNode(true));
-                        }
-                    } else {
-                        head.appendChild(node.cloneNode(true));
-                    }
+                      var newNode = node.cloneNode(true);
+                      if (newNode.tagName === 'SCRIPT') {
+                          var script = document.createElement('script');
+                          Array.from(newNode.attributes).forEach(function(attr) {
+                              script.setAttribute(attr.name, attr.value);
+                          });
+                          script.text = newNode.text;
+                          head.appendChild(script);
+                      } else {
+                          head.appendChild(newNode);
+                      }
                   });
                 })();
-              `}} />
+              `,
+            }}
+          />
         )}
       </head>
       <body className="font-body antialiased">
