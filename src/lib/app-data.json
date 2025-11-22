@@ -125,21 +125,21 @@
       "slug": "how-to-unlock-bootloader",
       "title": "如何解锁 Bootloader 并刷入第三方 ROM",
       "description": "本教程将引导您完成解锁安卓设备 Bootloader 的全过程，并成功刷入自定义 ROM，开启您的玩机之旅。",
-      "keywords": "Bootloader, Custom ROM, Android",
+      "keywords": "Bootloader, Custom ROM, Android, 刷机, 安卓",
       "content": "### 介绍\n\n解锁 Bootloader 是修改安卓设备的第一步。它允许您刷入自定义恢复（Custom Recovery），进而安装自定义 ROM、内核和其他修改。本指南将带您了解整个过程。\n\n**警告：** 解锁 Bootloader 会清除您设备上的所有数据，并可能使您的设备保修失效。请在继续之前备份所有重要数据。\n\n### 第一步：准备工作\n\n1.  **安装 ADB 和 Fastboot**：在您的电脑上下载并安装 Android SDK Platform-Tools。\n2.  **启用开发者选项和 USB 调试**：\n    *   在您的手机上，进入 `设置 > 关于手机`。\n    *   连续点击 `版本号` 7 次，直到您看到“您现在是开发者了！”的消息。\n    *   返回 `设置 > 系统`，您会找到 `开发者选项`。\n    *   进入 `开发者选项`，启用 `USB 调试` 和 `OEM 解锁`。\n3.  **备份数据**：此过程将清除手机上的所有内容。请务必备份照片、联系人和其他重要文件。\n\n### 第二步：解锁 Bootloader\n\n1.  将您的手机连接到电脑。\n2.  打开终端或命令提示符，输入 `adb devices`，确保您的设备被正确识别。\n3.  输入 `adb reboot bootloader`，您的手机将重启到 Fastboot 模式。\n4.  输入 `fastboot devices`，检查设备连接。\n5.  输入 `fastboot oem unlock` (对于某些设备，命令可能是 `fastboot flashing unlock`)。\n6.  手机屏幕上会显示一个确认提示。使用音量键选择“是”并按电源键确认。\n7.  您的设备将开始解锁过程并恢复出厂设置。完成后，它会自动重启。\n\n### 结论\n\n恭喜！您已经成功解锁了设备的 Bootloader。现在您可以进一步探索刷入 TWRP 等自定义恢复，并安装您喜欢的自定义 ROM 了。"
     },
     {
       "slug": "magisk-guide-root-and-modules",
       "title": "Magisk 指南：获取 Root 权限与模块化定制",
       "description": "深入了解 Magisk，学习如何安全地获取 Root 权限，并通过安装模块来扩展您设备的功能，实现深度定制。",
-      "keywords": "Magisk, Root, Android, Modules",
+      "keywords": "Magisk, Root, Android, Modules, Root权限, 模块",
       "content": "### Magisk 是什么？\n\nMagisk 是一个强大的工具，用于在安卓设备上获取“无系统”Root 权限。这意味着它可以在不修改 `/system` 分区的情况下授予您超级用户权限，从而更容易接收官方系统更新（OTA）。\n\n### 安装 Magisk\n\n1.  **解锁 Bootloader**：这是安装 Magisk 的先决条件。\n2.  **获取原厂 Boot 镜像**：您需要与您当前固件版本完全匹配的 `boot.img` 文件。\n3.  **修补 Boot 镜像**：\n    *   在您的手机上安装 Magisk 应用。\n    *   将 `boot.img` 文件传输到手机上。\n    *   打开 Magisk 应用，点击 `安装` -> `选择并修补一个文件`，然后选择您的 `boot.img`。\n    *   Magisk 会在您的 `Downloads` 文件夹中创建一个修补过的镜像文件，通常名为 `magisk_patched.img`。\n4.  **刷入修补后的镜像**：\n    *   将 `magisk_patched.img` 文件复制到您的电脑。\n    *   将手机重启到 Fastboot 模式 (`adb reboot bootloader`)。\n    *   输入 `fastboot flash boot magisk_patched.img`。\n    *   输入 `fastboot reboot` 重启手机。\n\n### 使用模块\n\nMagisk 的一大亮点是它的模块系统。您可以从 Magisk 应用内的仓库下载并安装模块，以添加各种功能，例如：\n\n*   **系统级广告拦截**\n*   **自定义字体和表情符号**\n*   **性能优化调整**\n*   **启用相机 API 功能**\n\n安装模块非常简单，只需在 Magisk 应用的“模块”部分点击安装即可。"
     },
     {
       "slug": "gcam-installation-guide",
       "title": "谷歌相机（GCam）安装与配置教程",
       "description": "释放您安卓手机的拍照潜力。本指南教您如何为您的机型找到并安装最佳版本的谷歌相机，并进行优化配置。",
-      "keywords": "GCam, Google Camera, Photography",
+      "keywords": "GCam, Google Camera, Photography, 谷歌相机, 拍照",
       "content": "### 谷歌相机（GCam）的优势\n\n谷歌相机以其卓越的图像处理算法而闻名，特别是 HDR+ 和夜视模式。在许多非 Pixel 设备上安装 GCam 可以显著提升照片质量。\n\n### 如何找到合适的 GCam 版本\n\n由于 GCam 是为 Pixel 手机设计的，将其移植到其他设备需要社区开发者的努力。因此，没有一个“通用”的 GCam 版本。\n\n1.  **确定您的手机型号和处理器**。\n2.  **访问社区论坛**：XDA-Developers 是寻找适用于您设备的 GCam 版本的最佳起点。寻找专门针对您手机型号的帖子。\n3.  **Celso Azevedo 的网站**：这是一个广受欢迎的 GCam 移植版仓库，您可以按开发者或设备进行浏览。\n\n### 安装和配置\n\n1.  **下载 APK**：找到推荐的版本后，下载 `.apk` 文件。\n2.  **允许安装未知应用**：在安装之前，您可能需要授予浏览器或文件管理器安装未知来源应用的权限。\n3.  **安装 APK**：点击下载的文件进行安装。\n4.  **加载配置文件 (XML)**：许多 GCam 版本支持 `.xml` 配置文件，这些文件包含了针对特定设备的优化设置。通常，您需要：\n    *   在手机存储的根目录下创建一个名为 `GCam/Configs` 的文件夹。\n    *   将下载的 `.xml` 文件放入该文件夹。\n    *   打开 GCam 应用，双击快门按钮旁边的黑色区域，然后选择并加载您的配置文件。\n\n### 享受拍照\n\n现在，您应该拥有一个功能齐全的谷歌相机应用了。尝试在不同光线条件下拍照，感受它与原生相机应用的区别吧！"
     }
   ]
