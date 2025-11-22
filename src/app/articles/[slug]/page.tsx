@@ -6,6 +6,9 @@ import { Footer } from '@/components/Footer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ShareButton } from '@/components/ShareButton';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 interface ArticlePageProps {
   params: {
@@ -54,7 +57,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             </ReactMarkdown>
           </div>
           
-          <footer className="mt-8 flex justify-center">
+          <footer className="mt-8 flex justify-center items-center gap-4">
+            <Button asChild variant="outline">
+              <Link href="/">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                返回首页
+              </Link>
+            </Button>
             <ShareButton title={article.title} />
           </footer>
         </article>
