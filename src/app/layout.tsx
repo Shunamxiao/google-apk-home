@@ -30,35 +30,20 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
-        {siteConfig.metaHtml && (
-          <script
-            id="meta-html-injector"
-            dangerouslySetInnerHTML={{
-              __html: `
-                (function() {
-                  var metaHtml = ${JSON.stringify(siteConfig.metaHtml)};
-                  var metaContainer = document.createElement('div');
-                  metaContainer.innerHTML = metaHtml;
-                  var head = document.head;
-                  Array.from(metaContainer.childNodes).forEach(function(node) {
-                      if (node.cloneNode) {
-                        var newNode = node.cloneNode(true) as Element;
-                        if (newNode.tagName === 'SCRIPT') {
-                            var script = document.createElement('script');
-                            Array.from(newNode.attributes).forEach(function(attr) {
-                                script.setAttribute(attr.name, attr.value);
-                            });
-                            script.text = (newNode as HTMLScriptElement).text;
-                            head.appendChild(script);
-                        } else {
-                            head.appendChild(newNode);
-                        }
-                      }
-                  });
-                })();
-              `,
-            }}
-          />
+        {siteConfig.baiduAnalyticsId && (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  var _hmt = _hmt || [];
+                  (function() {
+                    var hm = document.createElement("script");
+                    hm.src = "https://hm.baidu.com/hm.js?${siteConfig.baiduAnalyticsId}";
+                    var s = document.getElementsByTagName("script")[0]; 
+                    s.parentNode.insertBefore(hm, s);
+                  })();
+                `,
+              }}
+            />
         )}
       </head>
       <body className="font-body antialiased">

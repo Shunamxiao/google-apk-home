@@ -6,7 +6,7 @@
     "description": "查找并下载在您的安卓设备上安装谷歌服务所需的文件。我们为各种安卓版本提供软件包，使过程简单明了。",
     "footerText": "版权所有.",
     "footerSubText": "为安卓爱好者提供方便的谷歌环境工具。",
-    "metaHtml": "<meta name=\"baidu-site-verification\" content=\"codeva-9XyV2k6cAS\" />\n<meta name=\"google-site-verification\" content=\"wheyJrkeJteNmtsowo1dyWiAtd18QqJR0VGilx25600\" />\n<meta name=\"360-site-verification\" content=\"999219046b1b9e0ef3a7f7c0f481fe20\" />\n<meta name=\"sogou_site_verification\" content=\"2rU7VTaXRK\" />\n<script>\nvar _hmt = _hmt || [];\n(function() {\n  var hm = document.createElement(\"script\");\n  hm.src = \"https://hm.baidu.com/hm.js?b2e255a5512aa46a4f692adf9c8bfe00\";\n  var s = document.getElementsByTagName(\"script\")[0]; \n  s.parentNode.insertBefore(hm, s);\n})();\n</script>"
+    "baiduAnalyticsId": "b2e255a5512aa46a4f692adf9c8bfe00"
   },
   "androidVersions": [
     {

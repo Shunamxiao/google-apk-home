@@ -21,7 +21,7 @@ export interface SiteConfig {
   description: string;
   footerText: string;
   footerSubText: string;
-  metaHtml: string;
+  baiduAnalyticsId: string;
 }
 
 export interface Plugin {
