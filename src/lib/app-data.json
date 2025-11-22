@@ -94,6 +94,32 @@
       ]
     }
   ],
+  "thirdPartyTools": [
+    {
+      "id": "tool-shizuku",
+      "name": "Shizuku",
+      "description": "一个强大的工具，允许普通应用直接通过 ADB/Root 权限使用系统 API。",
+      "version": "13.5.0",
+      "downloadUrl": "#",
+      "iconName": "Shell"
+    },
+    {
+      "id": "tool-scene",
+      "name": "Scene",
+      "description": "一个强大的安卓自动化工具，通过简单的设置即可完成复杂任务。",
+      "version": "5.9",
+      "downloadUrl": "#",
+      "iconName": "Zap"
+    },
+    {
+      "id": "tool-huanji",
+      "name": "换机助手",
+      "description": "轻松将旧手机的数据（包括应用和文件）迁移到新手机。",
+      "version": "2.1.0",
+      "downloadUrl": "#",
+      "iconName": "Replace"
+    }
+  ],
   "articles": [
     {
       "slug": "how-to-unlock-bootloader",
