@@ -1,9 +1,9 @@
-import type { ComponentType } from 'react';
+import type { ComponentType, LucideIcon } from 'react';
 import { Package, Store, Cog } from 'lucide-react';
 
 export type IconName = 'Cog' | 'Package' | 'Store';
 
-export const iconMap: Record<IconName, ComponentType<{ className?: string }>> = {
+export const iconMap: Record<IconName, LucideIcon> = {
   Cog,
   Package,
   Store,

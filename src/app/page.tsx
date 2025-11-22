@@ -2,6 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { androidVersions } from '@/lib/data';
 import { AndroidVersionTabs } from '@/components/AndroidVersionTabs';
+import { ArticleTutorials } from '@/components/ArticleTutorials';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
           </p>
         </section>
         <AndroidVersionTabs versions={androidVersions} />
+        <ArticleTutorials />
       </main>
       <Footer />
     </div>
