@@ -14,7 +14,7 @@
       "name": "安卓 14",
       "releaseName": "翻转蛋糕",
       "plugins": [
-        {
+        { 
           "id": "a14-gfs",
           "name": "谷歌服务框架",
           "description": "为谷歌应用在您的设备上无缝工作提供核心功能。",
