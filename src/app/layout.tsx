@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import { FeedbackDialog } from '@/components/FeedbackDialog';
+import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton';
 
 export const metadata: Metadata = {
   title: '安卓助手 | 轻松设置安卓谷歌环境',
@@ -25,6 +27,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         {children}
+        <FloatingFeedbackButton />
         <Toaster />
       </body>
     </html>

@@ -17,7 +17,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { MessageSquarePlus } from 'lucide-react';
 
-export function FeedbackDialog() {
+interface FeedbackDialogProps {
+  isFab?: boolean;
+}
+
+export function FeedbackDialog({ isFab = false }: FeedbackDialogProps) {
   const [feedback, setFeedback] = useState('');
   const [contact, setContact] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -47,10 +51,20 @@ export function FeedbackDialog() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          <MessageSquarePlus className="mr-2 h-4 w-4" />
-          反馈
-        </Button>
+        {isFab ? (
+          <Button
+            size="icon"
+            className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg z-50"
+          >
+            <MessageSquarePlus className="h-6 w-6" />
+            <span className="sr-only">反馈</span>
+          </Button>
+        ) : (
+          <Button variant="outline">
+            <MessageSquarePlus className="mr-2 h-4 w-4" />
+            反馈
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

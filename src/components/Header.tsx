@@ -13,7 +13,7 @@ export function Header() {
             安卓助手
           </h1>
         </Link>
-        <div className="flex items-center gap-2">
+        <div className="hidden sm:flex items-center gap-2">
           <Button variant="outline" asChild>
             <Link href="#" target="_blank">
               <User className="mr-2 h-4 w-4" />
