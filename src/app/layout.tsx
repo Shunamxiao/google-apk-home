@@ -41,16 +41,18 @@ export default function RootLayout({
                   metaContainer.innerHTML = metaHtml;
                   var head = document.head;
                   Array.from(metaContainer.childNodes).forEach(function(node) {
-                      var newNode = node.cloneNode(true);
-                      if (newNode.tagName === 'SCRIPT') {
-                          var script = document.createElement('script');
-                          Array.from(newNode.attributes).forEach(function(attr) {
-                              script.setAttribute(attr.name, attr.value);
-                          });
-                          script.text = newNode.text;
-                          head.appendChild(script);
-                      } else {
-                          head.appendChild(newNode);
+                      if (node.cloneNode) {
+                        var newNode = node.cloneNode(true) as Element;
+                        if (newNode.tagName === 'SCRIPT') {
+                            var script = document.createElement('script');
+                            Array.from(newNode.attributes).forEach(function(attr) {
+                                script.setAttribute(attr.name, attr.value);
+                            });
+                            script.text = (newNode as HTMLScriptElement).text;
+                            head.appendChild(script);
+                        } else {
+                            head.appendChild(newNode);
+                        }
                       }
                   });
                 })();
