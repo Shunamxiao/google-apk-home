@@ -25,7 +25,7 @@ export function PluginCard({ plugin }: PluginCardProps) {
 
   return (
     <Card className="flex flex-row md:flex-col h-full bg-card/80 hover:bg-card transition-all duration-300 transform md:hover:-translate-y-1 hover:shadow-xl rounded-lg">
-      <div className="flex-shrink-0 p-6 flex flex-col items-center justify-center md:flex-row md:items-start md:gap-4 md:p-4">
+      <div className="flex-shrink-0 p-6 flex items-center justify-center md:flex-row md:justify-start md:items-start md:gap-4 md:p-4">
         <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center h-14 w-14 flex-shrink-0">
           {isUrl ? (
             <Image src={iconName} alt={`${name} icon`} width={32} height={32} className="object-contain" />
@@ -39,7 +39,7 @@ export function PluginCard({ plugin }: PluginCardProps) {
         </div>
       </div>
       
-      <div className="flex flex-col flex-grow px-6 pb-6 pt-0 md:pt-0 md:px-6">
+      <div className="flex flex-col flex-grow px-6 pb-6 pt-0 md:pt-4 md:px-4">
         <div className="md:hidden mb-2">
             <CardTitle className="font-headline text-xl">{name}</CardTitle>
             <CardDescription>版本: {version}</CardDescription>
