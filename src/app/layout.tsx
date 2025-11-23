@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton';
 import { siteConfig } from '@/lib/data';
 import { Inter } from 'next/font/google';
+import { ShareButton } from '@/components/ShareButton';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -48,6 +49,9 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         {children}
+        <div className="sm:hidden">
+           <ShareButton title={siteConfig.title} isFab />
+        </div>
         <FloatingFeedbackButton />
         <Toaster />
       </body>

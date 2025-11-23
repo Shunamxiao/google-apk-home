@@ -7,9 +7,10 @@ import { siteConfig } from '@/lib/data';
 
 interface ShareButtonProps {
   title: string;
+  isFab?: boolean;
 }
 
-export function ShareButton({ title }: ShareButtonProps) {
+export function ShareButton({ title, isFab = false }: ShareButtonProps) {
   const { toast } = useToast();
 
   const handleShare = async () => {
@@ -20,18 +21,12 @@ export function ShareButton({ title }: ShareButtonProps) {
     };
 
     try {
-      // navigator.share is only available in secure contexts (HTTPS)
-      // and needs a user gesture.
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
-        // Fallback for browsers that don't support navigator.share
         throw new Error('Share API not supported');
       }
     } catch (error) {
-      // This catch block handles both rejections from navigator.share()
-      // and the error thrown above. We'll attempt to copy to clipboard
-      // as a fallback in either case.
       try {
         await navigator.clipboard.writeText(window.location.href);
         toast({
@@ -47,9 +42,22 @@ export function ShareButton({ title }: ShareButtonProps) {
       }
     }
   };
+  
+  if (isFab) {
+    return (
+      <Button
+        size="icon"
+        className="fixed bottom-[5.5rem] right-6 h-14 w-14 rounded-full shadow-lg z-50"
+        onClick={handleShare}
+      >
+        <Share2 className="h-6 w-6" />
+        <span className="sr-only">分享</span>
+      </Button>
+    )
+  }
 
   return (
-    <Button onClick={handleShare} variant="outline" className="hidden sm:flex">
+    <Button onClick={handleShare} variant="outline">
       <Share2 className="mr-2 h-4 w-4" />
       <span>分享</span>
     </Button>
