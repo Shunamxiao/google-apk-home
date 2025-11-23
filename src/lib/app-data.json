@@ -11,7 +11,7 @@
   "androidVersions": [
     {
       "id": "android-14",
-      "name": "安卓 14",
+      "name": "安卓 16",
       "releaseName": "翻转蛋糕",
       "plugins": [
         { 
@@ -20,7 +20,7 @@
           "description": "为谷歌应用在您的设备上无缝工作提供核心功能。",
           "version": "14.1.2",
           "downloadUrl": "#",
-          "iconName": "Cog"
+          "iconName": "https://cdn.apks.cc/uploads/ap_resize.png"
         },
         {
           "id": "a14-gps",
@@ -28,7 +28,7 @@
           "description": "更新谷歌应用和来自谷歌 Play 的应用所必需。启用关键功能。",
           "version": "24.05.15",
           "downloadUrl": "#",
-          "iconName": "Package"
+          "iconName": "https://cdn.apks.cc/uploads/ap_resize.png"
         },
         {
           "id": "a14-playstore",
@@ -42,7 +42,7 @@
     },
     {
       "id": "android-13",
-      "name": "安卓 13",
+      "name": "安卓 15",
       "releaseName": "提拉米苏",
       "plugins": [
         {
@@ -51,7 +51,7 @@
           "description": "为谷歌应用在您的设备上无缝工作提供核心功能。",
           "version": "13.0.5",
           "downloadUrl": "#",
-          "iconName": "Cog"
+          "iconName": "https://cdn.apks.cc/uploads/ap_resize.png"
         },
         {
           "id": "a13-gps",
@@ -59,7 +59,7 @@
           "description": "更新谷歌应用和来自谷歌 Play 的应用所必需。启用关键功能。",
           "version": "23.49.14",
           "downloadUrl": "#",
-          "iconName": "Package"
+          "iconName": "https://cdn.apks.cc/uploads/ap_resize.png"
         },
         {
           "id": "a13-playstore",
@@ -73,7 +73,7 @@
     },
     {
       "id": "android-12",
-      "name": "安卓 12",
+      "name": "安卓 14",
       "releaseName": "雪糕筒",
       "plugins": [
         {
@@ -110,7 +110,7 @@
       "description": "一个强大的工具，允许普通应用直接通过 ADB/Root 权限使用系统 API。",
       "version": "13.5.0",
       "downloadUrl": "#",
-      "iconName": "https://raw.githubusercontent.com/ShizukuIAd/Shizuku-Icon/master/Shizuku_Logo_48.png"
+      "iconName": "https://cdn.apks.cc/uploads/shizuku-logo.png"
     },
     {
       "id": "tool-scene",

@@ -1,9 +1,10 @@
-import { User, Gamepad2 } from 'lucide-react';
+import { User, Gamepad2, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { FeedbackDialog } from './FeedbackDialog';
 import { Button } from './ui/button';
 import { siteConfig, iconMap } from '@/lib/data';
 import type { IconName } from '@/lib/data';
+import { ShareButton } from './ShareButton';
 
 export function Header() {
   const LogoIcon = iconMap[siteConfig.logoIcon as IconName];
@@ -17,6 +18,9 @@ export function Header() {
           </h1>
         </Link>
         <div className="flex items-center gap-2">
+          <div className="hidden sm:flex">
+             <ShareButton title={siteConfig.title} />
+          </div>
           <Button variant="outline" asChild>
             <Link href="#" target="_blank">
               <User className="mr-2 h-4 w-4" />
