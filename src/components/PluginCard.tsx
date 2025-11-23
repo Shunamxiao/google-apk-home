@@ -24,8 +24,8 @@ export function PluginCard({ plugin }: PluginCardProps) {
   const Icon = !isUrl ? iconMap[iconName as keyof typeof iconMap] : null;
 
   return (
-    <Card className="flex flex-col md:flex-row h-full bg-card/80 hover:bg-card transition-all duration-300 transform md:hover:-translate-y-1 hover:shadow-xl rounded-lg">
-      <div className="flex flex-row items-start gap-4 p-6 md:p-4 md:flex-shrink-0 md:items-center">
+    <Card className="flex flex-row md:flex-col h-full bg-card/80 hover:bg-card transition-all duration-300 transform md:hover:-translate-y-1 hover:shadow-xl rounded-lg">
+      <div className="flex-shrink-0 p-6 flex flex-col items-center justify-center md:flex-row md:items-start md:gap-4 md:p-4">
         <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center h-14 w-14 flex-shrink-0">
           {isUrl ? (
             <Image src={iconName} alt={`${name} icon`} width={32} height={32} className="object-contain" />
@@ -33,14 +33,14 @@ export function PluginCard({ plugin }: PluginCardProps) {
             Icon && <Icon className="h-8 w-8 text-accent" />
           )}
         </div>
-        <div className="md:hidden">
-          <CardTitle className="font-headline text-xl">{name}</CardTitle>
-          <CardDescription>版本: {version}</CardDescription>
+        <div className="hidden md:block">
+            <CardTitle className="font-headline text-xl">{name}</CardTitle>
+            <CardDescription>版本: {version}</CardDescription>
         </div>
       </div>
       
-      <div className="flex flex-col flex-grow px-6 pb-6 md:p-4">
-        <div className="hidden md:block mb-2">
+      <div className="flex flex-col flex-grow px-6 pb-6 pt-0 md:pt-6 md:px-6">
+        <div className="md:hidden mb-2">
             <CardTitle className="font-headline text-xl">{name}</CardTitle>
             <CardDescription>版本: {version}</CardDescription>
         </div>
