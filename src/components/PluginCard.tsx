@@ -24,31 +24,38 @@ export function PluginCard({ plugin }: PluginCardProps) {
   const Icon = !isUrl ? iconMap[iconName as keyof typeof iconMap] : null;
 
   return (
-    <Card className="flex flex-col h-full bg-card/80 hover:bg-card transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl rounded-lg">
-      <CardHeader className="flex flex-row items-start gap-4">
-        <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center h-14 w-14">
+    <Card className="flex flex-col md:flex-row h-full bg-card/80 hover:bg-card transition-all duration-300 transform md:hover:-translate-y-1 hover:shadow-xl rounded-lg">
+      <div className="flex flex-row items-start gap-4 p-6 md:p-4 md:flex-shrink-0 md:items-center">
+        <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center h-14 w-14 flex-shrink-0">
           {isUrl ? (
             <Image src={iconName} alt={`${name} icon`} width={32} height={32} className="object-contain" />
           ) : (
             Icon && <Icon className="h-8 w-8 text-accent" />
           )}
         </div>
-        <div>
+        <div className="md:hidden">
           <CardTitle className="font-headline text-xl">{name}</CardTitle>
           <CardDescription>版本: {version}</CardDescription>
         </div>
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-muted-foreground">{description}</p>
-      </CardContent>
-      <CardFooter>
-        <Button asChild className="w-full">
-          <Link href={downloadUrl}>
-            <Download className="mr-2 h-4 w-4" />
-            下载
-          </Link>
-        </Button>
-      </CardFooter>
+      </div>
+      
+      <div className="flex flex-col flex-grow px-6 pb-6 md:p-4">
+        <div className="hidden md:block mb-2">
+            <CardTitle className="font-headline text-xl">{name}</CardTitle>
+            <CardDescription>版本: {version}</CardDescription>
+        </div>
+        <CardContent className="flex-grow p-0">
+          <p className="text-muted-foreground">{description}</p>
+        </CardContent>
+        <CardFooter className="p-0 mt-4">
+          <Button asChild className="w-full">
+            <Link href={downloadUrl}>
+              <Download className="mr-2 h-4 w-4" />
+              下载
+            </Link>
+          </Button>
+        </CardFooter>
+      </div>
     </Card>
   );
 }
