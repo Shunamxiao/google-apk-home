@@ -35,7 +35,7 @@ export function PluginCard({ plugin }: PluginCardProps) {
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row flex-grow items-start md:items-center justify-between ml-4 md:ml-0 md:mt-4">
+        <div className="flex flex-row flex-grow items-center justify-between ml-4 md:ml-0 md:mt-4">
           {/* Title and Version */}
           <div className='md:w-full'>
             <CardTitle className="font-headline text-xl">{name}</CardTitle>
