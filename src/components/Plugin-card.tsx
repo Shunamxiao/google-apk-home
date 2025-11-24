@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Download, QrCode } from 'lucide-react';
+import { Download } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { iconMap } from '@/lib/data';
@@ -20,7 +20,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 interface PluginCardProps {
   plugin: Plugin;
@@ -37,24 +37,22 @@ export function PluginCard({ plugin }: PluginCardProps) {
 
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(downloadUrl)}`;
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     if (!isMobile) {
       setIsPopoverOpen(true);
     }
-  };
+  }, [isMobile]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     if (!isMobile) {
       setIsPopoverOpen(false);
     }
-  };
+  }, [isMobile]);
 
   return (
     <Card className="flex flex-col h-full bg-card/80 hover:bg-card transition-all duration-300 transform md:hover:-translate-y-1 hover:shadow-xl rounded-lg p-4">
       <div 
-        className="flex items-center flex-row"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        className="flex items-center"
       >
         <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center h-14 w-14 flex-shrink-0">
           {isUrl ? (
@@ -65,7 +63,7 @@ export function PluginCard({ plugin }: PluginCardProps) {
         </div>
 
         <div className="flex flex-col ml-4 flex-grow">
-          <CardTitle className="font-headline text-xl mb-1">{name}</CardTitle>
+          <CardTitle className="font-headline text-xl">{name}</CardTitle>
           <CardDescription>版本: {version}</CardDescription>
         </div>
 
@@ -85,7 +83,7 @@ export function PluginCard({ plugin }: PluginCardProps) {
         </CardContent>
 
         <CardFooter className="p-0 mt-4 hidden md:flex">
-          <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+           <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
             <PopoverTrigger asChild onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="w-full">
               <Button asChild className="w-full">
                 <Link href={downloadUrl} target="_blank" rel="noopener noreferrer">
