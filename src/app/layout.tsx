@@ -5,6 +5,7 @@ import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton';
 import { fetchAppData } from '@/lib/data';
 import { Inter } from 'next/font/google';
 import { ShareButton } from '@/components/ShareButton';
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -37,7 +38,9 @@ export default async function RootLayout({
     <html lang="zh" className={`${inter.variable}`}>
       <head>
         {appData?.siteConfig.baiduAnalyticsId && (
-            <script
+            <Script
+              id="baidu-analytics"
+              strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: `
                   var _hmt = _hmt || [];
