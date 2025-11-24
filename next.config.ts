@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.apks.cc',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.qrserver.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
