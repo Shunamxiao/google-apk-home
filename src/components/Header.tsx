@@ -22,13 +22,13 @@ export function Header() {
              <ShareButton title={siteConfig.title} />
           </div>
           <Button variant="outline" asChild>
-            <Link href="#" target="_blank">
+            <Link href="https://apks.cc" target="_blank">
               <User className="mr-2 h-4 w-4" />
               谷歌账号购买
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="#" target="_blank">
+            <Link href="https://apks.cc" target="_blank">
               <Gamepad2 className="mr-2 h-4 w-4" />
               游戏下载
             </Link>
