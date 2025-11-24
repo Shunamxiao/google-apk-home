@@ -25,11 +25,14 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   if (!article) {
     return {};
   }
+  
+  const baseKeywords = ['谷歌安装教程', '安卓教程', '谷歌插件', '谷歌服务'];
+  const articleKeywords = article.keywords ? article.keywords.split(',').map(k => k.trim()) : [];
 
   return {
-    title: `${article.title} | ${appData.siteConfig.siteName}`,
+    title: article.title,
     description: article.description,
-    keywords: article.keywords,
+    keywords: [...new Set([...baseKeywords, ...articleKeywords])],
   };
 }
 

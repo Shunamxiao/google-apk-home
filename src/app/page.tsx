@@ -5,6 +5,21 @@ import { AndroidVersionTabs } from '@/components/AndroidVersionTabs';
 import { ArticleTutorials } from '@/components/ArticleTutorials';
 import { ThirdPartyTools } from '@/components/ThirdPartyTools';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const appData = await fetchAppData();
+  if (!appData) return {};
+
+  const { siteConfig } = appData;
+
+  return {
+    title: `${siteConfig.siteName} - 谷歌框架安装与谷歌服务下载`,
+    description: `一站式解决安卓谷歌环境安装问题。提供适用于安卓16、15、14等所有版本的谷歌服务框架、Google Play服务和Play商店的官方纯净版下载。${siteConfig.description}`,
+    keywords: ['谷歌环境安装', '谷歌插件下载', '谷歌服务框架', 'Google Play服务', '谷歌安装器', '安卓谷歌套件'],
+  };
+}
+
 
 export default async function Home() {
   const appData = await fetchAppData();

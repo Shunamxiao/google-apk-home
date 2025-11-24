@@ -14,15 +14,16 @@ const inter = Inter({
 
 export async function generateMetadata(): Promise<Metadata> {
   const appData = await fetchAppData();
-  if (!appData) {
-    return {
-      title: 'App',
-      description: 'An app',
-    };
-  }
+  const siteName = appData?.siteConfig.siteName || '安卓谷歌框架安装';
+  const description = appData?.siteConfig.description || '提供安卓设备所需的谷歌服务框架和谷歌插件下载。';
+
   return {
-    title: appData.siteConfig.title,
-    description: appData.siteConfig.description,
+    title: {
+      template: `%s | ${siteName}`,
+      default: siteName,
+    },
+    description: description,
+    keywords: ['谷歌环境安装', '谷歌插件下载', '谷歌服务框架', '谷歌安装器'],
   };
 }
 
