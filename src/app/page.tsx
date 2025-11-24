@@ -1,14 +1,23 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { androidVersions, articles, thirdPartyTools } from '@/lib/data';
+import { fetchAppData } from '@/lib/data';
 import { AndroidVersionTabs } from '@/components/AndroidVersionTabs';
 import { ArticleTutorials } from '@/components/ArticleTutorials';
 import { ThirdPartyTools } from '@/components/ThirdPartyTools';
+import { notFound } from 'next/navigation';
 
-export default function Home() {
+export default async function Home() {
+  const appData = await fetchAppData();
+
+  if (!appData) {
+    notFound();
+  }
+
+  const { siteConfig, androidVersions, articles, thirdPartyTools } = appData;
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <Header />
+      <Header siteConfig={siteConfig} />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight">
@@ -22,7 +31,7 @@ export default function Home() {
         <ThirdPartyTools tools={thirdPartyTools} />
         <ArticleTutorials articles={articles} />
       </main>
-      <Footer />
+      <Footer siteConfig={siteConfig} />
     </div>
   );
 }

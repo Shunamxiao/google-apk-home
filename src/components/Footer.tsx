@@ -1,6 +1,6 @@
-import { siteConfig } from '@/lib/data';
+import { SiteConfig } from '@/lib/data';
 
-export function Footer() {
+export function Footer({ siteConfig }: { siteConfig: SiteConfig }) {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="py-6 px-4 sm:px-6 lg:px-8 border-t border-border/40">

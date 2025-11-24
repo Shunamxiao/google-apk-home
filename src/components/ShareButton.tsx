@@ -3,19 +3,19 @@
 import { Share2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { siteConfig } from '@/lib/data';
 
 interface ShareButtonProps {
   title: string;
+  siteName: string;
   isFab?: boolean;
 }
 
-export function ShareButton({ title, isFab = false }: ShareButtonProps) {
+export function ShareButton({ title, siteName, isFab = false }: ShareButtonProps) {
   const { toast } = useToast();
 
   const handleShare = async () => {
     const shareData = {
-      title: siteConfig.siteName,
+      title: siteName,
       text: title,
       url: window.location.href,
     };

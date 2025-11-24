@@ -1,6 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
 import { Package, Store, Cog, Shell, Zap, Replace, Smartphone } from 'lucide-react';
-import appData from './app-data.json';
 
 export type IconName = 'Cog' | 'Package' | 'Store' | 'Shell' | 'Zap' | 'Replace' | 'Smartphone';
 
@@ -50,11 +49,28 @@ export interface Article {
   content: string;
 }
 
-export const siteConfig: SiteConfig = appData.siteConfig;
-export const androidVersions: AndroidVersion[] = appData.androidVersions;
-export const thirdPartyTools: ThirdPartyTool[] = appData.thirdPartyTools;
-export const articles: Article[] = appData.articles;
+export interface AppData {
+  siteConfig: SiteConfig;
+  androidVersions: AndroidVersion[];
+  thirdPartyTools: ThirdPartyTool[];
+  articles: Article[];
+}
 
-export function getArticleBySlug(slug: string): Article | undefined {
+
+export async function fetchAppData(): Promise<AppData | null> {
+  try {
+    const response = await fetch('https://api.us.apks.cc/game/gp-apk', { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    const jsonData = await response.json();
+    return jsonData.data;
+  } catch (error) {
+    console.error('Failed to fetch app data:', error);
+    return null;
+  }
+}
+
+export function getArticleBySlug(articles: Article[], slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug);
 }

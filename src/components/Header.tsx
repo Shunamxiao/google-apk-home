@@ -1,12 +1,12 @@
-import { User, Gamepad2, Share2 } from 'lucide-react';
+import { User, Gamepad2 } from 'lucide-react';
 import Link from 'next/link';
 import { FeedbackDialog } from './FeedbackDialog';
 import { Button } from './ui/button';
-import { siteConfig, iconMap } from '@/lib/data';
+import { iconMap, SiteConfig } from '@/lib/data';
 import type { IconName } from '@/lib/data';
 import { ShareButton } from './ShareButton';
 
-export function Header() {
+export function Header({ siteConfig }: { siteConfig: SiteConfig }) {
   const LogoIcon = iconMap[siteConfig.logoIcon as IconName];
   return (
     <header className="py-4 px-4 sm:px-6 lg:px-8 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
@@ -19,7 +19,7 @@ export function Header() {
         </Link>
         <div className="flex items-center gap-2">
           <div className="hidden sm:flex">
-             <ShareButton title={siteConfig.title} />
+             <ShareButton title={siteConfig.title} siteName={siteConfig.siteName}/>
           </div>
           <Button variant="outline" asChild>
             <Link href="https://apks.cc" target="_blank">

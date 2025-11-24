@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton';
-import { siteConfig } from '@/lib/data';
+import { fetchAppData } from '@/lib/data';
 import { Inter } from 'next/font/google';
 import { ShareButton } from '@/components/ShareButton';
 
@@ -11,17 +11,28 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+export async function generateMetadata(): Promise<Metadata> {
+  const appData = await fetchAppData();
+  if (!appData) {
+    return {
+      title: 'App',
+      description: 'An app',
+    };
+  }
+  return {
+    title: appData.siteConfig.title,
+    description: appData.siteConfig.description,
+  };
+}
 
-export const metadata: Metadata = {
-  title: siteConfig.title,
-  description: siteConfig.description,
-};
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const appData = await fetchAppData();
+
   return (
     <html lang="zh" className={`${inter.variable}`}>
       <head>
@@ -31,14 +42,14 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
-        {siteConfig.baiduAnalyticsId && (
+        {appData?.siteConfig.baiduAnalyticsId && (
             <script
               dangerouslySetInnerHTML={{
                 __html: `
                   var _hmt = _hmt || [];
                   (function() {
                     var hm = document.createElement("script");
-                    hm.src = "https://hm.baidu.com/hm.js?${siteConfig.baiduAnalyticsId}";
+                    hm.src = "https://hm.baidu.com/hm.js?${appData.siteConfig.baiduAnalyticsId}";
                     var s = document.getElementsByTagName("script")[0]; 
                     s.parentNode.insertBefore(hm, s);
                   })();
@@ -50,7 +61,7 @@ export default function RootLayout({
       <body className="font-body antialiased">
         {children}
         <div className="sm:hidden">
-           <ShareButton title={siteConfig.title} isFab />
+           <ShareButton title={appData?.siteConfig.title || ''} siteName={appData?.siteConfig.siteName || ''} isFab />
         </div>
         <FloatingFeedbackButton />
         <Toaster />
