@@ -55,7 +55,7 @@
               "iconName": "https://cdn.apks.cc/uploads/ap_resize.png"
           },
           {
-              "id": "a15-gfs",
+              "id": "a15-gps",
               "name": "Google Play Store",
               "description": "为谷歌应用在您的设备上无缝工作提供核心功能。",
               "version": "48.7.17-23 [0] [PR] 826582504 (nodpi) (Android 6.0+)",
@@ -87,7 +87,7 @@
       "description": "一个强大的工具，允许普通应用直接通过 ADB/Root 权限使用系统 API，请保存到123盘后可免费快速下载。",
       "version": "13.5.0",
       "downloadUrl": "https://www.123865.com/s/4H3LVv-ORfI",
-      "iconName": "https://cdn.apks.cc/uploads/shizuku-logo.png"
+      "iconName": "https://raw.githubusercontent.com/ShizukuIAd/Shizuku-Icon/master/Shizuku_Logo_48.png"
   },
   {
       "id": "Go-app",
