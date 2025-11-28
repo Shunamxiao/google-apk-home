@@ -59,8 +59,8 @@ export interface AppData {
 
 export async function fetchAppData(): Promise<AppData | null> {
   try {
-    // Re-enable caching for performance. Next.js will handle revalidation.
-    const response = await fetch('https://api.us.apks.cc/game/gp-apk');
+    // Force dynamic rendering by opting out of caching for this fetch.
+    const response = await fetch('https://api.us.apks.cc/game/gp-apk', { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
