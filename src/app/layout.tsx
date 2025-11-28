@@ -38,6 +38,18 @@ export default async function RootLayout({
   return (
     <html lang="zh" className={`${inter.variable}`}>
       <head>
+        {process.env.BAIDU_SITE_VERIFICATION && (
+          <meta name="baidu-site-verification" content={process.env.BAIDU_SITE_VERIFICATION} />
+        )}
+        {process.env.GOOGLE_SITE_VERIFICATION && (
+          <meta name="google-site-verification" content={process.env.GOOGLE_SITE_VERIFICATION} />
+        )}
+        {process.env.S360_SITE_VERIFICATION && (
+          <meta name="360-site-verification" content={process.env.S360_SITE_VERIFICATION} />
+        )}
+        {process.env.SOGOU_SITE_VERIFICATION && (
+          <meta name="sogou_site_verification" content={process.env.SOGOU_SITE_VERIFICATION} />
+        )}
         {appData?.siteConfig.baiduAnalyticsId && (
             <Script
               id="baidu-analytics"
