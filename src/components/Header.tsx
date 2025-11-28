@@ -22,7 +22,7 @@ export function Header({ siteConfig }: { siteConfig: SiteConfig }) {
              <ShareButton title={siteConfig.title} siteName={siteConfig.siteName}/>
           </div>
           <Button variant="outline" asChild>
-            <Link href="https://apks.cc" target="_blank">
+            <Link href="https://apks.pgid.club/" target="_blank">
               <User className="mr-2 h-4 w-4" />
               谷歌账号购买
             </Link>
