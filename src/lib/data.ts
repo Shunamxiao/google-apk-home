@@ -56,8 +56,23 @@ export interface AppData {
   articles: Article[];
 }
 
+const defaultAppData: AppData = {
+  siteConfig: {
+    siteName: '安卓谷歌安装器',
+    logoIcon: 'Smartphone',
+    title: '安卓谷歌安装器 - 一站式谷歌服务解决方案',
+    description: '提供安卓设备所需的谷歌服务框架和谷歌插件下载。',
+    footerText: '版权所有',
+    footerSubText: '一个帮助您轻松安装谷歌服务的网站',
+    baiduAnalyticsId: '',
+  },
+  androidVersions: [],
+  thirdPartyTools: [],
+  articles: [],
+};
 
-export async function fetchAppData(): Promise<AppData | null> {
+
+export async function fetchAppData(): Promise<AppData> {
   try {
     const response = await fetch('https://api.us.apks.cc/game/gp-apk');
     if (!response.ok) {
@@ -66,8 +81,8 @@ export async function fetchAppData(): Promise<AppData | null> {
     const jsonData = await response.json();
     return jsonData.data;
   } catch (error) {
-    console.error('Failed to fetch app data:', error);
-    return null;
+    console.error('Failed to fetch app data, returning default data:', error);
+    return defaultAppData;
   }
 }
 
