@@ -16,8 +16,8 @@ interface ArticlePageProps {
   };
 }
 
-export function generateMetadata({ params }: ArticlePageProps): Metadata {
-  const appData = getAppData();
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const appData = await getAppData();
   const article = getArticleBySlug(appData.articles, params.slug);
 
   if (!article) {
@@ -34,13 +34,9 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
   };
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const appData = getAppData();
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const appData = await getAppData();
   
-  if (!appData) {
-    notFound();
-  }
-
   const article = getArticleBySlug(appData.articles, params.slug);
 
   if (!article) {

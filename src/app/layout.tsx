@@ -12,8 +12,8 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-export function generateMetadata(): Metadata {
-  const appData = getAppData();
+export async function generateMetadata(): Promise<Metadata> {
+  const appData = await getAppData();
   const siteName = appData.siteConfig.siteName;
   const description = appData.siteConfig.description;
 
@@ -28,12 +28,12 @@ export function generateMetadata(): Metadata {
 }
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const appData = getAppData();
+  const appData = await getAppData();
 
   return (
     <html lang="zh" className={`${inter.variable}`}>

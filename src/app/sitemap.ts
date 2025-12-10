@@ -3,12 +3,8 @@ import { getAppData } from '@/lib/data';
 
 const URL = 'https://apks.cc';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const appData = getAppData();
-
-  if (!appData) {
-    return [];
-  }
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const appData = await getAppData();
 
   const articles = appData.articles.map((article) => ({
     url: `${URL}/articles/${article.slug}`,

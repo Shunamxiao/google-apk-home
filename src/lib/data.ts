@@ -197,14 +197,36 @@ const staticAppData: AppData = {
   ]
 };
 
-// This function used to fetch data from a remote API, but due to network restrictions
-// in the execution environment, it now returns static, hardcoded data.
-export function fetchAppData(): AppData {
+export function getStaticAppData(): AppData {
   return staticAppData;
 }
 
-export function getAppData(): AppData {
-  return staticAppData;
+export async function getAppData(): Promise<AppData> {
+  const apiUrl = process.env.DATA_API_URL;
+
+  if (!apiUrl) {
+    console.log("[DEBUG] DATA_API_URL not found, falling back to static data.");
+    return getStaticAppData();
+  }
+
+  try {
+    console.log(`[DEBUG] Attempting to fetch data from: ${apiUrl}`);
+    const response = await fetch(apiUrl, { cache: 'no-store' });
+    
+    if (!response.ok) {
+      console.error(`[DEBUG] API response not OK. Status: ${response.status}`);
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    
+    const data: AppData = await response.json();
+    console.log("[DEBUG] Successfully fetched and parsed data from API.");
+    return data;
+
+  } catch (error) {
+    console.error("[DEBUG] Fetch API call failed. This is likely a network issue (DNS, firewall, etc.) or invalid JSON. Full error:", error);
+    console.log("[DEBUG] Falling back to static data due to fetch failure.");
+    return getStaticAppData();
+  }
 }
 
 export function getArticleBySlug(articles: Article[], slug: string): Article | undefined {
