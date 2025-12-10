@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
-import { getAppData } from '@/lib/data';
+import { fetchAppData } from '@/lib/data';
 
 const URL = 'https://apks.cc';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const appData = getAppData();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const appData = await fetchAppData();
 
   if (!appData) {
     return [];

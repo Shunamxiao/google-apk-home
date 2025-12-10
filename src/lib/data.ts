@@ -197,6 +197,42 @@ const staticAppData: AppData = {
   ]
 };
 
+export async function fetchAppData(): Promise<AppData> {
+  const url = 'https://api.us.apks.cc/game/gp-apk';
+  console.log(`[DEBUG] Attempting to fetch data from: ${url}`);
+
+  try {
+    const response = await fetch(url);
+    
+    console.log(`[DEBUG] Response status: ${response.status}`);
+    console.log(`[DEBUG] Response status text: ${response.statusText}`);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`[DEBUG] API request failed with status ${response.status}. Response body:`, errorText);
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+
+    const responseText = await response.text();
+    console.log('[DEBUG] Received response body as text:', responseText.substring(0, 500) + '...'); // Log first 500 chars
+
+    try {
+      const data: AppData = JSON.parse(responseText);
+      console.log('[DEBUG] Successfully parsed JSON data.');
+      return data;
+    } catch (jsonError) {
+      console.error('[DEBUG] Failed to parse response text as JSON.', jsonError);
+      console.log('[DEBUG] Falling back to static data due to JSON parsing error.');
+      return staticAppData;
+    }
+
+  } catch (error) {
+    console.error('[DEBUG] Fetch API call failed. This is likely a network issue (DNS, firewall, etc.). Full error:', error);
+    console.log('[DEBUG] Falling back to static data due to fetch failure.');
+    return staticAppData;
+  }
+}
+
 export function getAppData(): AppData {
     return staticAppData;
 }

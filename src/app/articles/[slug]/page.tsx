@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getArticleBySlug, getAppData, SiteConfig } from '@/lib/data';
+import { getArticleBySlug, fetchAppData, SiteConfig } from '@/lib/data';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ReactMarkdown from 'react-markdown';
@@ -16,8 +16,8 @@ interface ArticlePageProps {
   };
 }
 
-export function generateMetadata({ params }: ArticlePageProps): Metadata {
-  const appData = getAppData();
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const appData = await fetchAppData();
   if (!appData) return {};
   
   const article = getArticleBySlug(appData.articles, params.slug);
@@ -36,8 +36,8 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
   };
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const appData = getAppData();
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const appData = await fetchAppData();
   
   if (!appData) {
     notFound();

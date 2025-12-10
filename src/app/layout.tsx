@@ -2,18 +2,19 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton';
-import { getAppData } from '@/lib/data';
+import { fetchAppData } from '@/lib/data';
 import { Inter } from 'next/font/google';
 import { ShareButton } from '@/components/ShareButton';
 import Script from 'next/script';
+import { notFound } from 'next/navigation';
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 });
 
-export function generateMetadata(): Metadata {
-  const appData = getAppData();
+export async function generateMetadata(): Promise<Metadata> {
+  const appData = await fetchAppData();
   const siteName = appData?.siteConfig.siteName || '安卓谷歌框架安装';
   const description = appData?.siteConfig.description || '提供安卓设备所需的谷歌服务框架和谷歌插件下载。';
 
@@ -28,12 +29,16 @@ export function generateMetadata(): Metadata {
 }
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const appData = getAppData();
+  const appData = await fetchAppData();
+
+  if (!appData) {
+    notFound();
+  }
 
   return (
     <html lang="zh" className={`${inter.variable}`}>

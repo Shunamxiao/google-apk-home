@@ -1,14 +1,14 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { getAppData } from '@/lib/data';
+import { fetchAppData } from '@/lib/data';
 import { AndroidVersionTabs } from '@/components/AndroidVersionTabs';
 import { ArticleTutorials } from '@/components/ArticleTutorials';
 import { ThirdPartyTools } from '@/components/ThirdPartyTools';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
-export function generateMetadata(): Metadata {
-  const appData = getAppData();
+export async function generateMetadata(): Promise<Metadata> {
+  const appData = await fetchAppData();
   if (!appData) return {};
 
   const { siteConfig } = appData;
@@ -21,8 +21,8 @@ export function generateMetadata(): Metadata {
 }
 
 
-export default function Home() {
-  const appData = getAppData();
+export default async function Home() {
+  const appData = await fetchAppData();
 
   if (!appData) {
     notFound();
