@@ -168,7 +168,7 @@ const staticAppData: AppData = {
       description: "Go谷歌安装器是一款专门为解决安卓手机没有谷歌服务而设计的应用，可以一键安装谷歌三件套。",
       version: "5.2",
       downloadUrl: "https://apks.cc/apps/go-google-installer",
-      iconName: "https://cdn.apks.cc/images/go_google_installer.png"
+      iconName: "Shell"
     },
     {
       id: "ourplay",
@@ -176,7 +176,7 @@ const staticAppData: AppData = {
       description: "OurPlay（原谷歌空间）是一款提供谷歌服务框架和网络加速功能的工具，让您轻松畅玩外服游戏和使用谷歌应用。",
       version: "7.2.1",
       downloadUrl: "https://apks.cc/apps/ourplay",
-      iconName: "https://cdn.apks.cc/images/ourplay_logo.png"
+      iconName: "Zap"
     }
   ],
   articles: [
@@ -197,44 +197,14 @@ const staticAppData: AppData = {
   ]
 };
 
-export async function fetchAppData(): Promise<AppData> {
-  const url = 'https://api.us.apks.cc/game/gp-apk';
-  console.log(`[DEBUG] Attempting to fetch data from: ${url}`);
-
-  try {
-    const response = await fetch(url);
-    
-    console.log(`[DEBUG] Response status: ${response.status}`);
-    console.log(`[DEBUG] Response status text: ${response.statusText}`);
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`[DEBUG] API request failed with status ${response.status}. Response body:`, errorText);
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-
-    const responseText = await response.text();
-    console.log('[DEBUG] Received response body as text:', responseText.substring(0, 500) + '...'); // Log first 500 chars
-
-    try {
-      const data: AppData = JSON.parse(responseText);
-      console.log('[DEBUG] Successfully parsed JSON data.');
-      return data;
-    } catch (jsonError) {
-      console.error('[DEBUG] Failed to parse response text as JSON.', jsonError);
-      console.log('[DEBUG] Falling back to static data due to JSON parsing error.');
-      return staticAppData;
-    }
-
-  } catch (error) {
-    console.error('[DEBUG] Fetch API call failed. This is likely a network issue (DNS, firewall, etc.). Full error:', error);
-    console.log('[DEBUG] Falling back to static data due to fetch failure.');
-    return staticAppData;
-  }
+// This function used to fetch data from a remote API, but due to network restrictions
+// in the execution environment, it now returns static, hardcoded data.
+export function fetchAppData(): AppData {
+  return staticAppData;
 }
 
 export function getAppData(): AppData {
-    return staticAppData;
+  return staticAppData;
 }
 
 export function getArticleBySlug(articles: Article[], slug: string): Article | undefined {

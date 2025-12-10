@@ -2,21 +2,20 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton';
-import { fetchAppData } from '@/lib/data';
+import { getAppData } from '@/lib/data';
 import { Inter } from 'next/font/google';
 import { ShareButton } from '@/components/ShareButton';
 import Script from 'next/script';
-import { notFound } from 'next/navigation';
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const appData = await fetchAppData();
-  const siteName = appData?.siteConfig.siteName || '安卓谷歌框架安装';
-  const description = appData?.siteConfig.description || '提供安卓设备所需的谷歌服务框架和谷歌插件下载。';
+export function generateMetadata(): Metadata {
+  const appData = getAppData();
+  const siteName = appData.siteConfig.siteName;
+  const description = appData.siteConfig.description;
 
   return {
     title: {
@@ -29,16 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const appData = await fetchAppData();
-
-  if (!appData) {
-    notFound();
-  }
+  const appData = getAppData();
 
   return (
     <html lang="zh" className={`${inter.variable}`}>
@@ -55,7 +50,7 @@ export default async function RootLayout({
         {process.env.SOGOU_SITE_VERIFICATION && (
           <meta name="sogou_site_verification" content={process.env.SOGOU_SITE_VERIFICATION} />
         )}
-        {appData?.siteConfig.baiduAnalyticsId && (
+        {appData.siteConfig.baiduAnalyticsId && (
             <Script
               id="baidu-analytics"
               strategy="afterInteractive"
@@ -76,7 +71,7 @@ export default async function RootLayout({
       <body className="font-body antialiased">
         {children}
         <div className="sm:hidden">
-           <ShareButton title={appData?.siteConfig.title || ''} siteName={appData?.siteConfig.siteName || ''} isFab />
+           <ShareButton title={appData.siteConfig.title} siteName={appData.siteConfig.siteName} isFab />
         </div>
         <FloatingFeedbackButton />
         <Toaster />
